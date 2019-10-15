@@ -3,7 +3,7 @@ import ship from "./ship";
 test("hit() updates hits", () => {
   const newShip = ship(3);
   newShip.hit(2);
-  expect(newShip.hits).toBe([false, false, true])
+  expect(newShip.hits).toStrictEqual([false, false, true])
 })
 
 test("sunk returns correctly (false)", () => {
