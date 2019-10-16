@@ -7,7 +7,7 @@ class Game {
     this.gameboard1.placeShips();
     this.gameboard2.placeShips();
     this.ui = ui();
-    this.ui.render();
+    this.ui.render(this.gameboard1, this.gameboard2);
     // this.gameLoop();
   }
 
@@ -18,7 +18,7 @@ class Game {
     while (!(this.gameOver())) {
       const attack = await currentPlayer.getMove();
       currentTarget.receiveAttack(attack);
-      this.ui.render();
+      this.ui.render(this.gameboard1, this.gameboard2);
       currentPlayer = (currentPlayer === this.player1)
         ? this.player2
         : this.player1;
