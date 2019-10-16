@@ -7,18 +7,18 @@ test("get a real move from a human", () => {
   expect(newPlayer.getMove)
 });
 
-test("get a random move from a computer", () => {
+test("get a random move from a computer", async () => {
   const newPlayer = player("computer");
   const fakeGameboard = { size: 1, misses: [], hits: [] }
-  const [x, y] = newPlayer.getMove(fakeGameboard); // todo: pass in gameboard
+  const [x, y] = await newPlayer.getMove(fakeGameboard); // todo: pass in gameboard
   expect(x).toBeGreaterThanOrEqual(0);
-  expect(x).toBeGreaterThanOrEqual(5); // gameboard.size
+  expect(x).toBeLessThanOrEqual(fakeGameboard.size); // gameboard.size
   expect(y).toBeGreaterThanOrEqual(0);
-  expect(y).toBeGreaterThanOrEqual(5);
+  expect(y).toBeLessThanOrEqual(fakeGameboard.size);
 });
 
-test("AI moves don't overlap", () => {
+test("AI moves don't overlap", async () => {
   const newPlayer = player("computer");
   const fakeGameboard = { size: 1, misses: [[0,0]], hits: [] }
-  expect(newPlayer.getMove(fakeGameboard)).toBe(false); // todo: pass in full gameboard
+  expect(await newPlayer.getMove(fakeGameboard)).toBe(false); // todo: pass in full gameboard
 })
