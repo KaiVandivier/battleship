@@ -9,6 +9,7 @@ test("1: it places ships", () => {
 })
 
 test.todo("#: it places ships that don't overlap");
+test.todo("#: it receives input for ship placement");
 
 test("2: it receives attacks from coords and adds misses", () => {
   const newGameboard = gameboard(ship);
