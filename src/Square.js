@@ -2,7 +2,7 @@ import React from "react";
 import "./Square.css";
 
 class Square extends React.Component {
-  render() { // classNames for styling come from props ("ship", "hit", "miss")
+  render() {
     const { hit, missed, coord, ship, clickHandler } = this.props;
 
     return (
@@ -13,8 +13,11 @@ class Square extends React.Component {
           ((missed) ? " missed" : "") + 
           ((ship) ? " ship" : "")
         }
-        onClick={(clickHandler) ? () => clickHandler(JSON.parse(coord))
-          : null } // does this go here or in `Gameboard`?
+        onClick={
+          (clickHandler && !hit && !missed) 
+          ? () => clickHandler(JSON.parse(coord))
+          : null
+        }
       />
     );
   }
