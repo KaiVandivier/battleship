@@ -1,0 +1,7 @@
+.Gameboard {
+  display: grid;
+  grid-template: repeat(5, 1fr) / repeat(5, 1fr);
+  height: 180px;
+  width: 180px;
+  margin: 20px;
+}
