@@ -32,16 +32,16 @@ const fakeGameoverGameboard = jest.fn(() => {
   }
 });
 
+const fakeShip = {};
+
 const fakeRender = jest.fn()
-const fakeUI = jest.fn(() => {
-  return { render: fakeRender };
-});
+const fakeUI = { render: fakeRender };
 
 // The game loop should set up a new game by creating Players and Gameboards.
 //For now just populate each Gameboard with predetermined coordinates. 
 //You can implement a system for allowing players to place their ships later.
 test("It loads two players and gameboards", () => {
-  new Game(fakePlayer, fakeGameboard, fakeUI);
+  new Game(fakePlayer, fakeGameboard, fakeShip, fakeUI);
   expect(fakePlayer).toBeCalledTimes(2);
   expect(fakePlayer).toHaveBeenNthCalledWith(1, "human");
   expect(fakePlayer).toHaveBeenNthCalledWith(2, "computer");
@@ -59,10 +59,10 @@ test.todo("It takes user clicks to receive input");
 
 //This function is appropriate for the Game module.
 test("It ends the game when one player's ships are all sunk", () => {
-  const newGame = new Game(fakePlayer, fakeGameboard, fakeUI,
+  const newGame = new Game(fakePlayer, fakeGameboard, fakeShip, fakeUI,
     "computer", "computer");
   expect(newGame.gameOver()).toBe(false);
-  const newGame2 = new Game(fakePlayer, fakeGameoverGameboard, fakeUI,
+  const newGame2 = new Game(fakePlayer, fakeGameoverGameboard, fakeShip, fakeUI,
     "computer", "computer");
   expect(newGame2.gameOver()).toBe(true);
 });
@@ -87,7 +87,7 @@ test("It should step through turns and switch players", async () => {
       receiveAttack: fakeReceiveAttack,
     };
   });
-  const newGame = new Game(fakePlayer, fakeGameboard2, fakeUI,
+  const newGame = new Game(fakePlayer, fakeGameboard2, fakeShip, fakeUI,
     "computer", "computer");
   await newGame.gameLoop()
   expect(fakeAllSunk2).toBeCalledTimes(8)
