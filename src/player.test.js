@@ -2,9 +2,15 @@ import player from "./player";
 
 test.todo("get a real move from a human");
 
-test("get a real move from a human", () => {
+test("get a real move from a human", async () => {
   const newPlayer = player("human");
-  expect(newPlayer.getMove)
+  const fakeGameboard = { size: 1, misses: [], hits: [] }
+  const fakeCallback = jest.fn((gameboard, resolve) => {
+    resolve([1,2]);
+  });
+  const resp = await newPlayer.getMove(fakeGameboard, fakeCallback)
+  expect(fakeCallback).toBeCalled();
+  expect(resp).toEqual([1,2]);
 });
 
 test("get a random move from a computer", async () => {

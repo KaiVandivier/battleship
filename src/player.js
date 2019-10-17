@@ -1,16 +1,13 @@
 
 const player = function player(type) {
   // todo 
-  const getHumanMove = async function(gameboard) {
-    // todo: get human move
-    /* 
+  const getHumanMove = async function(gameboard, callback) {
     return new Promise((resolve, reject) => {
-      gameboard.activateButtons(resolve);
-      // then expecting buttons to call `resolve([x, y])`
+      callback(gameboard, resolve); // is gameboard necessary?
+      // then expecting buttons to call `resolve([x, y])` (JSON.parse(stringifiedCoord))
     });
-    */
   };
-  const getAiMove = /* async */ async function(gameboard) {
+  const getAiMove = async function(gameboard) {
     if (gameboard.misses.length + gameboard.hits.length 
       === gameboard.size ** 2) return false;
     const allMoves = [...gameboard.misses, ...gameboard.hits]

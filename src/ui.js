@@ -20,7 +20,14 @@ const UI = (function ui() {
   const activateButtons = function activateButtons(gameboard, clickHandler) {
     const { id, size, hits, misses, ships } = gameboard;
     const container = document.getElementById(`gb${id}`);
+    console.log("got to `activate buttons`")
+    console.log("click handler:", clickHandler);
     ReactDOM.render(<Gameboard
+      size={size}
+      hits={hits}
+      misses={misses}
+      ships={ships}
+      showShips={id === 1}
       buttonsActive={true}
       clickHandler={clickHandler}    
     />, container)
