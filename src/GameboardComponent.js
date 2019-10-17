@@ -1,5 +1,5 @@
 import React from "react";
-import "./Gameboard.css";
+import "./GameboardComponent.css";
 import Square from "./Square";
 
 class Gameboard extends React.Component {
@@ -10,12 +10,8 @@ class Gameboard extends React.Component {
       misses, 
       ships, 
       showShips,
-      buttonsActive,
       clickHandler,
     } = this.props;
-
-    console.log("got to gameboard");
-    console.log("click handler:", clickHandler);
 
     const grid = [];
     for (let y = 0; y < size; y ++) {
@@ -23,9 +19,6 @@ class Gameboard extends React.Component {
         // mark square with "hit" or "miss"
         const hit = hits.some(([hx, hy]) => x === hx && y === hy);
         const missed = misses.some(([mx, my]) => x === mx && y === my);
-
-        // if not hit or missed, activate buttons when appropriate
-        if (buttonsActive && !hit && !missed) { }
 
         // mark ships for player's board but not enemy's
         const ship = showShips && ships.some(({ coords }) => {
@@ -38,7 +31,6 @@ class Gameboard extends React.Component {
           <Square
             key={stringifiedCoord}
             coord={stringifiedCoord}
-            active={true /* todo: make dynamic */}
             hit={hit}
             missed={missed}
             ship={ship}
