@@ -1,3 +1,15 @@
 .Square {
   border: 1px solid black;
 }
+
+.ship {
+  background-color: lightgrey;
+}
+
+.hit {
+  background-color: red;
+}
+
+.missed {
+  background-color: lightblue;
+}
