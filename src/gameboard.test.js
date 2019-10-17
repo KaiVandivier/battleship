@@ -13,7 +13,7 @@ test.todo("#: it receives input for ship placement");
 
 test("2: it receives attacks from coords and adds misses", () => {
   const newGameboard = gameboard(ship);
-  newGameboard.receiveAttack(3, 4, null);
+  newGameboard.receiveAttack([3, 4]);
   expect(newGameboard.misses).toContainEqual([3,4]);
 });
 
@@ -29,7 +29,7 @@ test("4: it checks if all ships are sunk (true)", () => {
   // hit every cell
   for (let y = 0; y < newGameboard.size; y++) {
     for (let x = 0; x < newGameboard.size; x++) {
-      newGameboard.receiveAttack(x, y);
+      newGameboard.receiveAttack([x, y]);
     }
   }
   expect(newGameboard.allSunk()).toBe(true);

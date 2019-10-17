@@ -1,4 +1,4 @@
-const gameboard = function gameboard(ship) {
+const gameboard = function gameboard(ship, id) {
   const size = 5;
   const ships = [];
   const misses = [];
@@ -12,7 +12,7 @@ const gameboard = function gameboard(ship) {
       { ship: ship(2), coords: [ [0,0], [0,1] ] },
     );
   };
-  const receiveAttack = (x, y) => {
+  const receiveAttack = ([x, y]) => {
     let hitIndex;
     const targetHit = ships.find(({ coords }) => {
       hitIndex = coords.findIndex((coord) => {
@@ -29,6 +29,7 @@ const gameboard = function gameboard(ship) {
   };
   const allSunk = () => ships.every(({ ship }) => ship.isSunk());
   return {
+    id,
     size,
     ships,
     misses,
